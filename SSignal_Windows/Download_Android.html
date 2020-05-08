@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .div_Task {
+            cursor:pointer;
+            width:100%;
+            clear:both;
+        }
+        .span_src {
+            font-size: small;
+            color: gray;
+            word-break:break-all;
+        }
+        .Downloading {
+            color:blue;
+        }
+        .Succeeded {
+            color: green;
+        }
+        .Failed {
+            color:red;
+        }
+        .cover {
+            left:0px;
+            top:0px;
+            width:100%;
+            height:100%;
+            position:fixed;
+            background: #000;
+            opacity: 0.0;
+            z-index: 100000;
+        }
+        .menu {
+            position:fixed;
+            box-shadow:1px 1px 4px 0px rgba(0, 0, 0, 2);
+            min-width:100px;
+            background: #fff;
+            opacity: 1.0;
+            z-index: 100001;
+        }
+        #menu ul {
+            padding:0px;
+            margin:0px;
+            list-style:none;
+        }
+        #menu li {
+            text-align:left;
+            padding:5px 10px;
+        }
+    </style>
+    <script>
+        function ProgressChanged(id, progress) {
+            document.getElementById(id + "p").innerText = progress + " %";
+        }
+
+        function NewTask(id, filename, src, text) {
+            var div = document.createElement("div");
+            div.id = id;
+            div.className = "div_Task";
+            div.innerHTML = "<table><tr><td valign='top'><div onclick='LocateFile(\"" + id + "\")'  ontouchstart='TouchStart(event, \"" + id + "\")' ontouchend='TouchEnd()' ontouchmove='TouchEnd()'><span id='" + id +"n' style='word-break:break-all;'>"  + filename + "</span><br><span class='span_src'>" + src + "</span><br><span id='" + id + "p' class='Downloading'>" + text + "</span></div></td></tr></table>";
+            document.body.appendChild(div);
+            window.scroll(0, document.body.scrollHeight);
+        }
+
+        function Succeeded(id, text) {
+            var span = document.getElementById(id + "p");
+            span.innerText = text;
+            span.className = "Succeeded";
+        }
+
+        function Failed(id, text) {
+            var span = document.getElementById(id + "p");
+            span.innerText = text;
+            span.className = "Failed";
+        }
+
+        function LocateFile(id) {
+            var span = document.getElementById(id + "p");
+            if (span.className == "Succeeded") {
+                span = document.getElementById(id + "n");
+                window.external.LocateFile(span.innerText);
+            }
+        }
+
+        var timer, id_On;
+        function TouchStart(e, id) {
+            timer = window.setTimeout(function () {
+                timer = undefined;
+                var x = e.changedTouches[0].clientX;
+                var y = e.changedTouches[0].clientY;
+                var cover = document.getElementById("cover");
+                cover.style.display = "";
+                var menu = document.getElementById("menu");
+                menu.style.display = "";
+                if (x + menu.clientWidth > document.documentElement.clientWidth) {
+                    x = document.documentElement.clientWidth - menu.clientWidth;
+                }
+                if (y + menu.clientHeight > document.documentElement.clientHeight) {
+                    y = document.documentElement.clientHeight - menu.clientHeight;
+                }
+                menu.style.left = x + "px";
+                menu.style.top = y + "px";
+                id_On = id;
+            }, 500);
+        }
+        
+        function TouchEnd() {
+            if (!IsNullorEmpty(timer)) {
+                window.clearTimeout(timer);
+                timer = undefined;
+            }
+        }
+        
+        function HideMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = "none";
+            var cover = document.getElementById("cover");
+            cover.style.display = "none";
+        }
+        
+        function IsNullorEmpty(text) {
+            if (text == undefined || text == null || text == "") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        function Cancel() {
+            HideMenu();
+            var span = document.getElementById(id_On + "p");
+            if (span.className == "Downloading") {
+                var div = document.getElementById(id_On);
+                document.body.removeChild(div);
+                window.external.Cancel(id_On);
+            }
+        }
+        
+        function MenuText(Cancel) {
+            var m_cancel = document.getElementById("m_cancel");
+            m_cancel.innerText = Cancel;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="cover" class="cover" style="display:none;" onclick="HideMenu()"></div>
+    <div id="menu" class="menu" style="display:none;">
+        <ul>
+            <li id="m_cancel" onclick="Cancel()">取消</li>
+        </ul>
+    </div>
+</body>
+</html>

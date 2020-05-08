@@ -1,0 +1,607 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .td_SSicon {
+            width: 40px;
+        }
+        .SSicon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 8px 8px 8px 8px;
+        }
+        .div_SS {
+            width:100%;
+            clear:both;
+        }
+        .SSin_Text {
+            margin-left: 4px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px 8px 8px 8px;
+            word-wrap:break-word;
+        }
+        .SSout_Text {
+            margin-right: 4px;
+            padding: 10px;
+            background-color: lightgreen;
+            border-radius: 8px 8px 8px 8px;
+            word-wrap:break-word;
+        }
+        .SSin_Img {
+            margin-left: 4px;
+            background-color: white;
+            border-radius: 8px 8px 8px 8px;
+        }
+        .SSout_Img {
+            margin-right: 4px;
+            background-color: white;
+            border-radius: 8px 8px 8px 8px;
+        }
+        .SS_Voice_unplayed {
+            margin-left: 4px;
+            margin-right: 4px;
+            padding: 10px;
+            background-color:yellow;
+            border-radius: 8px 8px 8px 8px;
+            cursor: pointer;
+        }
+        .SS_Voice_played {
+            margin-left: 4px;
+            margin-right: 4px;
+            padding: 10px;
+            background-color:lightyellow;
+            border-radius: 8px 8px 8px 8px;
+            cursor: pointer;
+        }
+        .SS_File {
+            margin-left: 4px;
+            margin-right: 4px;
+            padding: 10px;
+            background-color:royalblue;
+            color:white;
+            border-radius: 8px 8px 8px 8px;
+            cursor: pointer;
+        }
+        .DateBar {
+            width: 100%;
+            color: dimgray;
+            font-size: small;
+            text-align: center;
+            clear: both;
+        }
+        .TaskName {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        a{
+            color: blue;
+            text-decoration: underline;
+        }
+        body{
+            font-size:small;
+        }
+        .cover {
+            left:0px;
+            top:0px;
+            width:100%;
+            height:100%;
+            position:fixed;
+            background: #000;
+            opacity: 0.0;
+            z-index: 100000;
+        }
+        .menu {
+            position:fixed;
+            box-shadow:1px 1px 4px 0px rgba(0, 0, 0, 2);
+            min-width:100px;
+            background: #fff;
+            opacity: 1.0;
+            z-index: 100001;
+        }
+        #menu ul {
+            padding:0px;
+            margin:0px;
+            list-style:none;
+        }
+        #menu li {
+            text-align:left;
+            padding:5px 10px;
+        }
+    </style>
+    <script>
+        var hrjustnow = true;
+        var Direction = 1;
+        var CurrentVoiceID;
+        var VoiceText;
+        var IsLargeGroup;
+
+        window.onscroll = function () {
+            if (Direction == 0) {
+                var p = document.documentElement.scrollTop || document.body.scrollTop;
+                if (p == 0) {
+                    window.external.ReachTop();
+                }
+            }
+        };
+
+        function SSin_Text(SSAddress, Index, Text, IconSrc, date, Stranger) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date);
+            }
+            if (Stranger == undefined) { Stranger = ""; }
+            var div = document.createElement("div");
+            div.id = SSAddress + ":" + Index;
+            div.className = "div_SS";
+            if (!IsNullorEmpty(Stranger)) {
+                div.setAttribute("name", SSAddress);
+            }
+            div.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' onclick='ToRobot2(\"ClickIcon\", \"" + SSAddress + "\")'/></td><td valign='top'><div class='SSin_Text' onmouseup='MouseUp(event, \"" + Index + "\", \"" + SSAddress + "\")'>"  + AnalyseURL(Text) + "</div>" + Stranger + "</td></tr></table>";
+            var width1 = document.body.scrollWidth;
+            AddDiv(div);
+            if (document.body.scrollWidth > width1) {
+                div.style.wordBreak = "break-all";
+            }
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date);
+            }
+        }
+        
+        function SSin_Img(SSAddress, Index, ImgSrc, Width, Height, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date);
+            }
+            var div = document.createElement("div");
+            div.id = SSAddress + ":" + Index;
+            div.className = "div_SS";
+            div.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' onclick='ToRobot2(\"ClickIcon\", \"" + SSAddress + "\")'/></td><td valign='top'><img class='SSin_Img' src='" + ImgSrc + ".jpg' width='" + Width + "' height='" + Height + "' onclick='ToRobot2(\"ClickImage\", \"" + ImgSrc + "\")' onmouseup='MouseUp(event, \"" + Index + "\", \"" + SSAddress + "\")'/></td></tr></table>";
+            AddDiv(div);
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date);
+            }
+        }
+        
+        function SSin_Voice(SSAddress, Index, Text, VoiceSrc, IconSrc, date, played) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date);
+            }
+            var div = document.createElement("div");
+            div.id = SSAddress + ":" + Index;
+            div.className = "div_SS";
+            var c = (played == undefined ? "SS_Voice_unplayed" : "SS_Voice_played");
+            div.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' onclick='ToRobot2(\"ClickIcon\", \"" + SSAddress + "\")'/></td><td valign='top'><div id='v:" + SSAddress + ":" + Index + "' class='" + c + "' onclick='PlayVoice(\"" + VoiceSrc + "\", \"v:" + SSAddress + ":" + Index + "\")' onmouseup='MouseUp(event, \"" + Index + "\", \"" + SSAddress + "\")'>"  + Text + "</div></td></tr></table>";
+            AddDiv(div);
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date);
+            }
+        }
+        
+        function SSin_Video(SSAddress, Index, VideoSrc, Width, Height, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date);
+            }
+            var div = document.createElement("div");
+            div.id = SSAddress + ":" + Index;
+            div.className = "div_SS";
+            div.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' onclick='ToRobot2(\"ClickIcon\", \"" + SSAddress + "\")'/></td><td valign='top'><img class='SSin_Img' src='" + VideoSrc + ".jpg' width='" + Width + "' height='" + Height + "' onclick='ToRobot2(\"ClickVideo\", \"" + VideoSrc + "\")' onmouseup='MouseUp(event, \"" + Index + "\", \"" + SSAddress + "\")'/></td></tr></table>";
+            AddDiv(div);
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date);
+            }
+        }
+        
+        function SSin_File(SSAddress, Index, Filename, FileSrc, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date);
+            }
+            var div = document.createElement("div");
+            div.id = SSAddress + ":" + Index;
+            div.className = "div_SS";
+            div.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' onclick='ToRobot2(\"ClickIcon\", \"" + SSAddress + "\")'/></td><td valign='top'><div id='v:" + SSAddress + ":" + Index + "' class='SS_File' onclick='ToRobot2(\"DownloadFile\", \"" + Filename + "\", \"" + FileSrc + "\")' onmouseup='MouseUp(event, \"" + Index + "\", \"" + SSAddress + "\")'>"  + Filename + "</div></td></tr></table>";
+            var width1 = document.body.scrollWidth;
+            AddDiv(div);
+            if (document.body.scrollWidth > width1) {
+                div.style.wordBreak = "break-all";
+            }
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date);
+            }
+        }
+        
+        function SSin_Base64Img(ImgSrc, IconSrc) {
+            var div = document.createElement("div");
+            div.className = "div_SS";
+            div.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "'/></td><td valign='top'><img class='SSin_Img' src='" + ImgSrc + "'></td></tr></table>";
+            var chat = document.getElementById("chat");
+            chat.appendChild(div);
+            window.scroll(0, document.body.scrollHeight);
+            hrjustnow = false;
+        }
+
+        function SSout_Text(Ticks, Text, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date, Ticks);
+            }
+            var div = document.createElement("div");
+            div.id = Ticks;
+            div.className = "div_SS";
+            div.innerHTML = "<table align='right'><tr><td valign='top'><div class='SSout_Text' onmouseup='MouseUp(event, \"" + Ticks + "\", \"\")'>" + AnalyseURL(Text) + "</div></td><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "'/></td></tr></table>";
+            AddDiv(div);
+            div = div.getElementsByClassName("SSout_Text")[0];
+            if (div.getBoundingClientRect().left < 5) {
+                div.style.wordBreak = "break-all";
+            }
+           if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date, Ticks);
+            }
+       }
+        
+        function SSout_Img(Ticks, ImgSrc, Width, Height, IconSrc, date, addextension) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date, Ticks);
+            }
+            var div = document.createElement("div");
+            div.id = Ticks;
+            div.className = "div_SS";
+            var ImgSrc2;
+            if (addextension == "true") {
+                ImgSrc2 = ImgSrc + ".jpg";
+            } else {
+                ImgSrc2 = ImgSrc;
+            }
+            div.innerHTML = "<table align='right'><tr><td valign='top'><img class='SSout_Img' src='" + ImgSrc2 + "' width='" + Width + "' height='" + Height + "' onclick='ToRobot2(\"ClickImage\", \"" + ImgSrc + "\")' onmouseup='MouseUp(event, \"" + Ticks + "\", \"\")'/></td><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' /></td></tr></table>";
+            AddDiv(div);
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date, Ticks);
+            }
+       }
+        
+        function SSout_Voice(Ticks, Text, VoiceSrc, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date, Ticks);
+            }
+            var div = document.createElement("div");
+            div.id = Ticks;
+            div.className = "div_SS";
+            div.innerHTML = "<table align='right'><tr><td valign='top'><div id='v:" + Ticks + "' class='SS_Voice_played' onclick='PlayVoice(\"" + VoiceSrc + "\", \"v:" + Ticks + "\")' onmouseup='MouseUp(event, \"" + Ticks + "\", \"\")'>" + Text + "</div></td><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "'/></td></tr></table>";
+            AddDiv(div);
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date, Ticks);
+            }
+        }
+        
+        function SSout_Video(Ticks, VideoSrc, Width, Height, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date, Ticks);
+            }
+            var div = document.createElement("div");
+            div.id = Ticks;
+            div.className = "div_SS";
+            div.innerHTML = "<table align='right'><tr><td valign='top'><img class='SSout_Img' src='" + VideoSrc + ".jpg' width='" + Width + "' height='" + Height + "' onclick='ToRobot2(\"ClickVideo\", \"" + VideoSrc + "\")' onmouseup='MouseUp(event, \"" + Ticks + "\", \"\")'/></td><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "' /></td></tr></table>";
+            AddDiv(div);
+            if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date, Ticks);
+            }
+       }
+        
+        function SSout_File(Ticks, Filename, FileSrc, IconSrc, date) {
+            if (!IsNullorEmpty(date) && Direction != -1) {
+                DateBar(date, Ticks);
+            }
+            var div = document.createElement("div");
+            div.id = Ticks;
+            div.className = "div_SS";
+            div.innerHTML = "<table align='right'><tr><td valign='top'><div id='v:" + Ticks + "' class='SS_File' onclick='ToRobot2(\"DownloadFile\", \"" + Filename + "\", \"" + FileSrc + "\")' onmouseup='MouseUp(event, \"" + Ticks + "\", \"\")'>" + Filename + "</div></td><td class='td_SSicon' valign='top'><img class='SSicon' src='" + IconSrc + "'/></td></tr></table>";
+            AddDiv(div);
+            div = div.getElementsByClassName("SS_File")[0];
+            if (div.getBoundingClientRect().left < 5) {
+                div.style.wordBreak = "break-all";
+            }
+           if (!IsNullorEmpty(date) && Direction == -1) {
+                DateBar(date, Ticks);
+            }
+        }
+
+        function DateBar(date, id) {
+            var divarray = document.getElementsByClassName("DateBar");
+            if (!IsNullorEmpty(divarray)) {
+                if (divarray.length > 0) {
+                    if (Direction != -1) {
+                        if (divarray[divarray.length - 1].innerHTML == date) {
+                            return;
+                        }
+                    } else {
+                        if (divarray[0].innerHTML == date) {
+                            return;
+                        }
+                    }
+                }
+            }
+            var div = document.createElement("div");
+            if (!IsNullorEmpty(id)) {
+                div.id = "date" + id;
+            }
+            div.className = "DateBar";
+            div.innerHTML = date;
+            AddDiv(div);
+        }
+        
+        function AddDiv(div) {
+           var chat = document.getElementById("chat");
+           if (Direction != -1) {
+                chat.appendChild(div);
+                if (Direction == 0) {
+                    window.scroll(0, document.body.scrollHeight);
+                    hrjustnow = false;
+                }
+            } else {
+                var first = chat.firstElementChild;
+                var p = document.documentElement.scrollTop || document.body.scrollTop;
+                var h = first.offsetTop - p;
+                chat.insertBefore(div, first);
+                window.scroll(0, first.offsetTop - h);
+            }
+        }
+
+        function NewTask() {
+            if (hrjustnow) {
+                return;
+            }
+            var hr = document.createElement("hr");
+            hr.style.clear = "both";
+            var chat = document.getElementById("chat");
+            chat.appendChild(hr);
+            hrjustnow = true;
+        }
+
+        function ToRobot(TaskName) {
+            window.external.ToRobot(TaskName);
+        }
+
+        function ToRobot2(Command, Parameter1, Parameter2) {
+            window.external.ToRobot2(Command, Parameter1, Parameter2);
+        }
+
+        var Index_On, SSAddress_On;
+        function MouseUp(e, Index, SSAddress) {
+            if (e.button == 2) {
+                var x = e.clientX + 3;
+                var y = e.clientY + 3;
+                var cover = document.getElementById("cover");
+                cover.style.display = "";
+                var m_cancel = document.getElementById("m_cancel");
+                if (IsNullorEmpty(SSAddress)) {
+                    var max;
+                    if (IsLargeGroup == true) {
+                        max = 120 * 3;
+                    } else {
+                        max = 120;
+                    }
+                    if ((new Date().getTime() - gettime(Index)) / 1000 < max) {
+                        m_cancel.style.display = "";
+                    } else {
+                        m_cancel.style.display = "none";
+                    }
+                } else {
+                    m_cancel.style.display = "none";
+                }
+                var menu = document.getElementById("menu");
+                menu.style.display = "";
+                if (x + menu.clientWidth > document.documentElement.clientWidth) {
+                    x = document.documentElement.clientWidth - menu.clientWidth;
+                }
+                if (y + menu.clientHeight > document.documentElement.clientHeight) {
+                    y = document.documentElement.clientHeight - menu.clientHeight;
+                }
+                menu.style.left = x + "px";
+                menu.style.top = y + "px";
+                Index_On = Index;
+                SSAddress_On = SSAddress;
+            }
+        }
+        
+        function HideMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = "none";
+            var cover = document.getElementById("cover");
+            cover.style.display = "none";
+            if (!IsNullorEmpty(id_selected)) {
+                document.getElementById(id_selected).style.backgroundColor = "";
+            }
+        }
+
+        function PlayVoice(VoiceSrc, VoiceID) {
+            var div = document.getElementById(VoiceID);
+            var IsNew;
+            if (div.className != "SS_Voice_played") {
+                IsNew = "true";
+                div.className = "SS_Voice_played";
+            } else {
+                IsNew = "false";
+            }
+            window.external.PlayVoice(VoiceSrc, VoiceID, IsNew);
+        }
+
+        function VoiceStarted(VoiceID) {
+            VoiceEnded();
+            var div = document.getElementById(VoiceID);
+            VoiceText = div.innerText;
+            div.innerText = "....................";
+            CurrentVoiceID = VoiceID;
+        }
+        
+        function VoiceEnded() {
+            if (!IsNullorEmpty(CurrentVoiceID)) {
+                var div = document.getElementById(CurrentVoiceID);
+                div.innerText = VoiceText;
+                CurrentVoiceID = null;
+            }
+        }
+
+        function IsNullorEmpty(text) {
+            if (text == undefined || text == null || text == "") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        function LoadEarlierStart() {
+            Direction = -1;
+        }
+        
+        function LoadLaterStart() {
+            Direction = 2;
+        }
+        
+        function LoadEnd(IsLarge) {
+            if (Direction == 1) {
+                window.scroll(0, document.body.scrollHeight);
+            }
+            Direction = 0;
+            IsLargeGroup = IsLarge;
+        }
+
+        function RemoveSS(id) {
+            var div = document.getElementById(id);
+            if (!IsNullorEmpty(div)) {
+                var p = div.parentNode;
+                p.removeChild(div);
+                div = document.getElementById("date" + id);
+                if (!IsNullorEmpty(div)) {
+                    p.removeChild(div);
+                }
+            }
+        }
+        
+        function RemoveStrangerSS(SSAddress) {
+            var arr = document.getElementsByName(SSAddress);
+            if (arr != null) {
+                var i;
+                for (i = arr.length - 1; i >= 0; i--) {
+                    var p = arr[i].parentNode;
+                    p.removeChild(arr[i]);
+                }
+            }
+        }
+        
+        function ClearSS() {
+            var chat = document.getElementById("chat");
+            chat.innerHTML = "";
+            hrjustnow = true;
+        }
+        
+        function CancelSS() {
+            HideMenu();
+            var max;
+            if (IsLargeGroup == true) {
+                max = 120 * 3;
+            } else {
+                max = 120;
+            }
+            if ((new Date().getTime() - gettime(Index_On)) / 1000 >= max) {
+                return;
+            }
+            window.external.ToRobot2("CancelSS", Index_On, "");
+        }
+
+        function DeleteSS() {
+            HideMenu();
+            window.external.ToRobot2("DeleteSS", Index_On, SSAddress_On);
+        }
+
+        function MenuText(Cancel, Delete) {
+            var m_cancel = document.getElementById("m_cancel");
+            m_cancel.innerText = Cancel;
+            var m_delete = document.getElementById("m_delete");
+            m_delete.innerText = Delete;
+        }
+        
+        var id_selected;
+        function OnMouseOver(id) {
+            if (id != id_selected) {
+                document.getElementById(id).style.backgroundColor = "lightblue";
+            }
+        }
+
+        function OnMouseOut(id) {
+            if (id != id_selected) {
+                document.getElementById(id).style.backgroundColor = "";
+            }
+        }
+        
+        function AnalyseURL(s) {
+            var i = 0;
+            var ss = "";
+            var j, jj, k, kk;
+            while (true) {
+                j = s.indexOf("https://", i);
+                jj = s.indexOf("http://", i);
+                if (j >= 0 || jj >= 0) {
+                    if (j < 0) {
+                        j = jj;
+                    } else if (jj >= 0) {
+                        if (jj < j) {
+                            j = jj;
+                        }
+                    }
+                    if (j > i) {
+                        ss += s.substr(i, j - i);
+                    } 
+                    k = s.indexOf(" ", j);
+                    kk = s.indexOf("<", j);
+                    if (k < 0 && kk < 0) {
+                        var sss = s.substr(j);
+                        ss += "<a target='_blank' href='" + sss + "'>" + sss + "</a>";
+                        break;
+                    } else {
+                        if (k < 0) {
+                            k = kk;
+                        } else if (kk >= 0) {
+                            if (kk < k) {
+                                k = kk;
+                            }
+                        }
+                        var sss = s.substr(j, k - j);
+                        ss += "<a target='_blank' href='" + sss + "'>" + sss + "</a>";
+                        i = k;
+                    }
+                } else {
+                    if (i > 0) {
+                        ss += s.substr(i);
+                    } else {
+                        return s;
+                    }
+                    break;
+                }
+            }
+            return ss;
+        }
+
+        function gettime(s) {
+            var s2 = Number(s);
+            if (s2 > 621355968000000000) {
+                return (s2 - 621355968000000000) / 10000;
+            } else {
+                return s2;
+            }
+        }
+
+    </script>
+</head>
+<body style="background-color:silver;">
+    <div id="cover" class="cover" style="display:none;" onclick="HideMenu()"></div>
+    <div id="menu" class="menu" style="display:none;">
+        <ul>
+            <li id="m_cancel" onclick="CancelSS()" onmouseover="OnMouseOver('m_cancel')" onmouseout="OnMouseOut('m_cancel')">撤回</li>
+            <li id="m_delete" onclick="DeleteSS()" onmouseover="OnMouseOver('m_delete')" onmouseout="OnMouseOut('m_delete')">删除</li>
+        </ul>
+    </div>
+    <div id="chat"></div>
+</body>
+</html>

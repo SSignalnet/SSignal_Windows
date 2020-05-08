@@ -1,0 +1,381 @@
+[Ò»°ã]
+<0>SSignal
+<1>Speak
+<2>Refresh
+<3>The length is not allowed to be more than #% chars. Please reenter it.
+<4>Please enter your SSaddress.
+<5>Please enter password.
+<6>Please enter verification code.
+<7>Please wait.
+<8>The format invalid. Please reenter it.
+<9>The format of this username is incorrect. Please reenter it.
+<10>The password must have at least #% chars. Please reenter it.
+<11>The verification code has 6 chars. Please reenter it.
+<12>#% Trying again.
+<13>To robot
+<14>As the server is maintaining, service paused.
+<15>The account disabled.
+<16>Cancelled
+<17>Username or password incorrect.
+<18>This is not a verified mobile phone number.
+<19>This is not a verified email address.
+<20>Your operation is too frequent. Please try again in #% minutes.
+<21>Please enter the verification code.
+<22>Close
+<23>Please choose pictures (#% picture/% pictures/% at the most).
+<24>Please enter an English username that you want to own (containing only English letters a-z, numbers 0-9 and underline _ , and #% chars at the most).
+<25>Please enter an Chinese username that you want to own (containing only Chinese characters, numbers 0-9 and underline _ , and #% chars at the most).
+<26>Please enter your email address, which will be sent a verification code. Do read our #%Terms of Use#% and #%Privacy Policy#% before registering.
+<27>Please set a password for your account (#% chars at the least, and #% chars at the most).
+<28>Please enter the same password again.
+<29>Start
+<30>Stop
+<31>Send
+<32>The password can only have  #% chars at the most. Please reenter it.
+<33>This is not a mobile phone number. Please reenter it.
+<34>It is not the same as that password you entered just now. Please reenter it.
+<35>Add to SSpal list
+<36>Getting a verification code picture.
+<37>The English username registered by others.
+<38>The Chinese username registered by others.
+<39>The mobile phone number binded to other account.
+<40>The email address binded to other account.
+<41>A verification code sent to your mobile phone number. Please enter it within #% minutes.
+<42>A verification code sent to your email address. Please enter it within #% minutes.
+<43>In blacklist
+<44>The verification code submitted by you not match that one on the server.
+<45>Your account created successfully! Now you can <a>#%</a>.
+<46>Connecting transport server.
+<47>Please choose pictures (#% picture/% pictures/% at the most). They will not be converted into jpg format.
+<48>Try again
+<49>Black domains
+<50>Back camera
+<51>Front camera
+<52>Failed. You have been put into his/her black list.
+<53>Verification codes not match each other.
+<54>The number of chosen pictures is not supposed to be more than #%.
+<55>The password of your account changed. You can <a>#%</a> now.
+<56>You can send and receive SS now. (You can send #% SS an hour at the most and send #% SS a day at the most)
+<57>The good posted successfully.
+<58>In SSpal list
+<59>Please choose a picture.
+<60>Add to blacklist
+<61>Entering the same English username again, it will be submitted to the server. You will never be able to revise it.
+<62>Please enter the same English username again.
+<63>Entering the same Chinese username again, they will be submitted to the server. You will never be able to revise them.
+<64>It is not the same as that username you entered just now. Please reenter it.
+<65>Your English SSaddress will be #% .
+<66>Your Chinese SSaddress will be #% .
+<67>All image files
+<68>Your English SSaddress is #% .
+<69>Your Chinese SSaddress is #% .
+<70>Getting key. Please wait.
+<71>Save the login credential? Please choose <a>#%</a> or <a>#%</a>, or <a>#%</a>.
+<72>Currently refusing SS from any strangers who are not from white domains.
+<73>Lately
+<74>SSpals
+<75>Black list
+<76>Stranger
+<77>Getting account information.
+<78>Your mobile phone number is #% .
+<79>Your email address is #% .
+<80>PC login on #%, IP #% .
+<81>Phone login on #%, IP #% .
+<82>Please enter a SSpal's SSaddress or temp ID (the figures between brackets in the note line of each SSpal).
+<83>You are not a member of this chat group.
+<84>Please enter a correct ID.
+<85>An invitation sent to #% #%. [<a>#%</a>]
+<86>Chat groups
+<87>You are creating a small chat group (maximum #% members; new SS will be real-time pushed to members by server). Please enter a name for it. (No more than #% chars)
+<88>There are no tags at present.
+<89>He/She joined this chat group.
+<90>Your phone is online, too.
+<91>Your phone is not online.
+<92>I become a small icon.
+<93>What can I do for you?
+<94>The number of group members reached the limit.
+<95>[Small group] #%
+<96>Total data is not supposed to be more than #% MB.
+<97>You will never receive any messages from #%.
+<98>Please enter a SSaddress.
+<99>Please add a note. (No more than #% chars)
+<100>Please add a note for this SSpal, such as name, phone number etc. (No more than #% chars)
+<101>Posting the goods. Please wait.
+<102>You have joined this chat group.
+<103>Please enter a host name, which must be started with #%, followed by 2-letter country code, and then 2-letter state/province code, ending with a server number. For example, sscnbj000001 (Domain: sscnbj000001.#%).
+<104>Failed, because you can add #% SSpals at the most.
+<105>This SSpal already added. Please enter a SSaddress that is not added.
+<106>This is your own SSaddress.
+<107>SSpal #% added successfully. [<a>#%</a>]
+<108>Error #%.
+<109>This SSaddress not exist. [<a>#%</a>]
+<110>It's already in the blacklist.
+<111>Failed to get the A record of domain name.
+<112>Your connection with the transport server interrupted.
+<113>Managing users, chat groups and servers.
+<114>This SSaddress is not in your SSpal list. Please enter a SSaddress that was added.
+<115>SSpal #% deleted successfully. [<a>#%</a>]
+<116>There is no black list at present.
+<117>Please choose a SSpal who you are going to remove from the black list.
+<118>Transport server unavailable.
+<119>It's already in your SSpal list.
+<120>It does not exist in your SSpal list.
+<121>You did not put this SSpal into the black list.
+<122>Are you going to logout? Please choose <a>#%</a> or <a>#%</a>.
+<123>New messages from SSignal network
+<124>Are you going to add this SSpal to the black list? Please choose <a>#%</a> or <a>#%</a>.
+<125>There is no empty position on transport servers.
+<126>The number of small chat groups created by you reached the limit.
+<127>#% removed from the black lilst.
+<128>[password]
+<129>Current tags: #%
+<130>You can classify SSpals with tags. Please enter a new tag name, such as classmate, marketing etc. (No more than #% chars)
+<131>Failed. SSaddress no longer exist.
+<132>This tag already added. Please enter a new new tag.
+<133>System Managing Robot
+<134>Unable to add more tags. Each SSpal can be added 2 tags at the most.
+<135>Failed, because each tag can mark #% SSpals at the most.
+<136>This is not a new tag name.
+<137>There are no tags that you can choose.
+<138>Please choose existing tags: #%
+<139>This is not an existing tag name.
+<140>Please enter tag names that you are going to remove.
+<141>Database not ready.
+<142>SSignal Robot
+<143>Please choose a tag that you are going to rename: #%
+<144>Please enter a new name. (No more than #% chars)
+<145>The size of a file is over #% MB.
+<146>Please choose an existing tag name.
+<147>Please enter its current tag name.
+<148>Failed due to unknown reasons.
+<149>Tag #% renamed as #%.
+<150>SSpals of tag #% incorporated into tag #%.
+<151>Please enter a new note. (No more than #% chars)
+<152>Currect note: #%
+<153>Failed. You are not in the SSpal list of #%.
+<154>You are not authorized to do this operation.
+<155>There is no difference betwwen the new note and the current note. Please reenter it.
+<156>The note revised into: #%.
+<157>Unable to open local database. Please move the database file out of its current directory. Path: #%
+<158>The local database is inconsistent with current user. Please move the database file out of its current directory. Path: #%
+<159>Posting the MeteroRain. Please wait.
+<160>You have put this SSpal into the black list.
+<161>The length of English username should not be less than #% chars. Please reenter it.
+<162>The length of Chinese username should not be less than #% chars. Please reenter it.
+<163>Please enter the IP address of the server. If you are testing in this PC, please enter ::1, not 172.0.0.1
+<164>Please enter a domain name (If you didn't receive an inviation from some domain, you can create a temp account by entering domain name ssignal.net).
+<165>Host name must be started with #%.
+<166>This is not a valid IP address.
+<167>You are logged in.
+<168>The picture is too small.
+<169>Your account icon changed.
+<170>There is nobody else in this chat group except you.
+<171>The number of group members reached the limit.
+<172>I created a small chat group [#%]. I hope you join it.
+<173>Join
+<174>The number of small chat groups that you joined reached the limit.
+<175>#% joined this group.
+<176>Are you going to leave this chat group? Please choose <a>#%</a> or <a>#%</a>.
+<177>You joined a chat group created by this SSpal.
+<178>#% leaved this group.
+<179>Group owner
+<180>Please enter the SS address a member.
+<181>Are you going to dissolve this chat group? Please choose <a>#%</a> or <a>#%</a>.
+<182>Unable to dissolve a chat group which has members.
+<183>Please enter a new name for this chat group. (No more than #% chars)
+<184>This name occupied by a chat group.
+<185>The name of this chat group changed into #%.
+<186>#% new message/% messages/%
+<187>Getting member list. Please wait.
+<188>Group member (can post)
+<189>Waiting for joining (can post)
+<190>#% removed from this group by the group owner.
+<191>You have sent an invitation to this SSpal. Please [#%] before sending again.
+<192>This SSpal already joined this group.
+<193>Withdraw
+<194>Delete
+<195>Delete it?
+<196>The SSpal withdrawed a SS.
+<197>#% withdrawed a SS.
+<198>Data transfering failed.
+<199>Failed (#%).
+<200>HTTP data error occured.
+<201>Error occured on the rarget server.
+<202>Chat
+<203>Tiny Universe
+<204>Your PC is online, too.
+<205>Your PC is not online.
+<206>Copy
+<207>Please choose a folder for saving database files.
+<208>The path for saving database backup file not exist: #%
+<209>(Note: The bytes of backup database and its source database are exactly the same before the No. 8192 byte and after the No. 40959 byte.)
+<210>Unable to open the database for saving backup redentials.
+<211>The backup database has been removed (#%)
+<212>Downloading database file.
+<213>trying again in #% minute/% minutes/%
+<214>No new pages at #%. Checking again in #% minute/% minutes/%.
+<215>Due to wrong file length, pause backup! The file length of the server database is #%, and the file length of the backup database is #%.
+<216>The server datebase is replacing old pages. Trying again in #% second/% seconds/%.
+<217>The server datebase is forcing to replace old pages. Trying again in #% second/% seconds/%.
+<218>The reply of [new credential added successfully] not received.
+<219>Wrong verification number.
+<220>Incorrect credential for backup.
+<221>The credential for backup database locked.
+<222>Unable to update the copying history of the main database.
+<223>Exception occured when verifying the cache of new pages by hash.
+<224>Timeout when copying old pages. Please backup with a new credential.
+<225>Are you going to change your password? Please enter a new password (#% chars at the least, and #% chars at the most). 
+<226>Are you going to change your email address? Please enter a new email address.
+<227>Are you going to change your phone number? Please enter a new phone number.
+<228>Please your current password.
+<229>Please log out, and then log in.
+<230>Password changed successfully.
+<231>Current password incorrect.
+<232>A verification code sent to your new phone number. Please enter it within #% minutes.
+<233>A verification code sent to your new email address. Please enter it within #% minutes.
+<234>Phone number changed successfully.
+<235>Email address changed successfully.
+<236>All domains
+<237>White domains
+<238>Domains unavailable.
+<239>When a stranger send you a text SS (Strangers can only send text SS), it will be blocked if he/she is from a black domain. Please choose a domain that you don't trust: #%
+<240>When a stranger send you a text SS (Strangers can only send text SS), it will not be blocked if he/she is from a white domain. Please choose a domain that you trust: #%
+<241>Please choose from domains listed above.
+<242>It's unnecessary to add white domains, when #% is not added to the black domain list.
+<243>You have already added #% to the black domain list.
+<244>Are you going to remove domain [#%] from the liist? Please choose <a>#%</a> or <a>#%</a>.
+<245>Done.
+<246>Key received.
+<247>Your mobile phone is online now.
+<248>Your computer is online now.
+<249>Domain [#%] added to the black domain list.
+<250>Domain [#%] added to the white domain list.
+<251>Domain [#%] removed from the black domain list.
+<252>Domain [#%] removed from the black domain list.
+<253>Switched to voice mode.
+<254>Switched to text mode.
+<255>Record
+<256>Stop & Send
+<257>Clicking the progressbar can cancel recording.
+<258>Voice: #%s
+<259>Pressing to start record
+<260>Swiping up to cancel recording
+<261>Recording
+<262>Please allow me to access storage.
+<263>Please allow me to record audio.
+<264>#% tag
+<265>Please login to the Management Center first.
+<266>The number of SS that you sent in this hour reached the limit.
+<267>The number of SS that you sent today reached the limit.
+<268>The MeteorRain posted successfully.
+<269>Server not ready. Please try again later on.
+<270>Please enter the IP address of the server.
+<271>You are creating a large chat group (number of members is not limited, depending on capacity of server; new SS will not be real-time pushed to members by server and the client of members will receive new SS every few minutes). Please enter a name for it. (No more than #% chars)
+<272>The number of large chat groups created by you reached the limit.
+<273>How many members will your new group have?
+<274>Chat group server unavailable.
+<275>[Large group] #%
+<276>Large chat group [#%] created successfully. Its address is #% .
+<277>Please enter the address of a large chat group.
+<278>This is not an address of large chat group.
+<279>The number of large chat groups that you joined reached the limit.
+<280>Welcome to use SSignal! You are not logged in. Please <a>#%</a>. if you don't have an account, you can <a>#%</a> one. If you <a>#%</a> your password, you can reset it.
+<281>Getting the credential for connecting. Please wait.
+<282>The credential for connecting expired.
+<283>New credential for connecting received.
+<284>Group icon changed.
+<285>Please don't do this until he/she accept your invitation.
+<286>A group is using this name.
+<287>The number of users on this large chat group server is full.
+<288>#% removed from this group by #%.
+<289>I'm inviting you to join large chat group [#%].
+<290>Unable to find this SS address in the member list.
+<291>Please enter the figure between brackets: ordinary member who can't post (#%), ordinary member who can post (#%) or administrator (#%).
+<292>Please enter the figure between brackets.
+<293>Group member (can't post)
+<294>Waiting for joining (can't post)
+<295>Administrator
+<296>Please enter your new nickname in this chat group. (No more than #% chars)
+<297>Please don't edit your SSPal list frequently.
+<298>Please enter a positive integer.
+<299>Sorry, you can't post.
+<300>Unable to register, because you are not invited.
+<301>Please enter an email address which will be authorized to register. Please enter *, if you allow anyone to register.
+<302>Please enter an email address which will be unauthorized to register. Please enter *, if you don't allow anyone to register.
+<303>Please keep your English SS Address the same as your email address.
+<304>Please keep your native SS Address the same as your email address.
+<305>Please choose a file.
+<306>All files
+<307>Done
+<308>Failed
+<309>Waiting
+<310>Downloading File
+<311>Cancel
+<312>Please enter an English SS Address who will be authorized to edit goods.
+<313>Please allow this app to autostart. (It will be unable to receive messages after being killed)
+<314>Please allow me to record video and audio.
+<315>#%s
+<316>Please allow me to take photos.
+<317>Already downloaded to #%
+<318>Ask
+<319>Have you allowed this app to autostart?
+<320>Please don't let battery saver restrict this app's activity. (The power consumption of this app is very low)
+<321>Please allow this app to show notifications. (Some mobile phones disabled notifications of apps by default)
+<322>Location: Settings>Apps>SSignal
+<323>Picture
+<324>Short video
+<325>Document
+<326>Edit
+<327>#% has to relogin.
+<328>Lately emojis
+<329>All emojis
+[ÈÎÎñ]
+<0>yes
+<1>no
+<2>login
+<3>register
+<4>forgot
+<5>logout
+<6>cancel
+<7>close
+<8>account
+<9>icon
+<10>leave chat group
+<11>email address
+<12>remove member
+<13>group name
+<14>dissolve chat group
+<15>password
+<16>add a SSpal
+<17>delete a SSpal
+<18>clean black list
+<19>rename tag
+<20>send pictures
+<21>send original pictures
+<22>send a photo
+<23>send a short video
+<24>send a file
+<25>add new tag
+<26>add existing tag
+<27>remove tag
+<28>note
+<29>block
+<30>small chat group
+<31>large chat group
+<32>invite
+<33>phone number
+<34>add black domain
+<35>add white domain
+<36>send voice
+<37>send text
+<38>tiny universe
+<39>nickname
+<40>change role
+<41>authorize register
+<42>unauthorize register
+<43>goods editor
+<44>can't receive messages in time
+<45>report
+<46>new transport server
+<47>new large chat group server
+<48>center server of tiny universe

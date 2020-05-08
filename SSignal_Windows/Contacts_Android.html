@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .td_SSicon {
+            width: 40px;
+        }
+        .SSicon{
+            width:40px;
+            height:40px;
+            background-color:whitesmoke;
+            border-radius:8px 8px 8px 8px;
+        }
+        .Contact {
+            word-wrap:break-word;
+        }
+        .Address {
+            color:darkgray;
+        }
+        .RedNotify{
+            width: 20px;
+            height:20px;
+            line-height:20px;
+            background-color:red;
+            border-radius:50%;
+            text-align:center;
+            font-size:small;
+            color:white;
+            margin-right:5px;
+        }
+        .Range{
+            padding:15px 5px 15px 5px;
+        }
+    </style>
+    <script>
+        var id_selected;
+
+        function ClickAContact(id) {
+            if (!IsNullorEmpty(id)) {
+                ShowSelected(id);
+                window.external.ClickAContact(id);
+            }
+        }
+
+        function ShowSelected(id, loading) {
+            if (id != id_selected || loading == true) {
+                if (!IsNullorEmpty(id_selected) && id != id_selected) {
+                    var selected = document.getElementById(id_selected);
+                    if (!IsNullorEmpty(selected)) {
+                        selected.style.backgroundColor = "";
+                    }
+                }
+                var contact = document.getElementById(id);
+                if (!IsNullorEmpty(contact)) {
+                    id_selected = id;
+                    contact.style.backgroundColor = "lightgreen";
+                    if (loading == true) {
+                        contact.scrollIntoView();
+                    }
+                    if (id_selected == "r1") {
+                        var div = contact.getElementsByClassName("RedNotify")[0];
+                        div.style.display = "none";
+                        div.innerText = ""
+                    }
+                }
+           }
+        }
+
+        function SelectRange() {
+            window.external.SelectRange();
+        }
+
+        function ShowRange(html) {
+            document.getElementById("R").style.display = "none";
+            document.getElementById("Contacts").innerHTML = html;
+        }
+
+        function ClickARange(id) {
+            if (!IsNullorEmpty(id)) {
+                window.external.ClickARange(id);
+            }
+        }
+
+        function NewSSNumber(id, Num) {
+            var contact = document.getElementById(id);
+            var div = contact.getElementsByClassName("RedNotify")[0];
+            if (Number(Num) > 0) {
+                div.style.display = "inline-block";
+                div.innerText = Num
+            } else {
+                div.style.display = "none";
+                div.innerText = ""
+            }
+        }
+
+        function LoadContactList(range, html, id) {
+            var R = document.getElementById("R");
+            R.innerText = range;
+            R.style.display = "";
+            if (!IsNullorEmpty(html)) {
+                document.getElementById("Contacts").innerHTML = html;
+            } else {
+                document.getElementById("Contacts").innerHTML = "";
+            }
+            if (!IsNullorEmpty(id)) {
+                ShowSelected(id, true);
+            }
+        }
+
+        function ShowRobot1(html) {
+            document.getElementById("r1").innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='r1.jpg' /></td><td valign='top'>" + html + "</td></tr></table>";
+        }
+        
+        function ShowRobot0(html) {
+            var robot0 = document.getElementById("r0");
+            robot0.innerHTML = "<table><tr><td class='td_SSicon' valign='top'><img class='SSicon' src='r0.jpg' /></td><td valign='top'>" + html + "</td></tr></table>";
+            robot0.style.display = "";
+        }
+        
+        function HideRobot0() {
+            document.getElementById("r0").style.display = "none";
+        }
+
+        function IsNullorEmpty(text) {
+            if (text == undefined || text == null || text == "") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="r0" onclick="ClickAContact('r0')" style="display:none;"></div>
+    <div id="r1" onclick="ClickAContact('r1')"></div>
+    <div id="R" onclick="SelectRange()" class="Range" style="display:none;"></div>
+    <div id="Contacts"></div>
+</body>
+</html>
